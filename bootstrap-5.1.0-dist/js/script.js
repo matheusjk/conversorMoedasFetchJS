@@ -142,7 +142,7 @@ btn.style.marginTop = '15px'
 const resposta = async () => {
     let payload = await fetch(URL).then(response => response.json()).catch(error => console.log(error.message))
     console.log(payload)
-    return await payload
+    return payload
 
 }
 
@@ -166,7 +166,7 @@ const resposta = async () => {
                 // alert(evento.target.text.split("/")[0])
                 console.log(evento.target.text)
                 if(texto[0].innerHTML != selected[0].options[selected[0].options.selectedIndex].text.split("/")[0]){
-                    texto[0].innerHTML = evento.target.text.split("/")[0]    //.options[selected[0].options.selectedIndex].text.split("/")[0]
+                    texto[0].innerHTML = selected[0].options[selected[0].options.selectedIndex].text.split("/")[0]
                 }	
 
             })
@@ -178,8 +178,10 @@ const resposta = async () => {
                 let valorReal = parseFloat(realMoeda.value)
                 // alert(valorReal, valorSelecionado)
                 for(let i in respostaEspera){
+                    console.log(`VALOR SELECIONADO ${valorSelecionado} | VALOR REAL ${valorReal} | VALOR RESPOSTA ${respostaEspera[i].ask}`)
+                    console.log("\n")
                     if(valorSelecionado == respostaEspera[i].ask && (selecionaMoeda.children[selecionaMoeda.selectedIndex].textContent).search(respostaEspera[i].code) != -1){
-
+                        // console.log(`VALOR SELECIONADO ${valorSelecionado} | VALOR REAL ${valorReal} | VALOR RESPOSTA ${respostaEspera[i].ask}`)
                         alert(`${numeroFormatado.format(valorReal * respostaEspera[i].ask)}`)
                         valores.innerText = `${numeroFormatado.format(valorReal * respostaEspera[i].ask)}` 
                     }
@@ -187,4 +189,3 @@ const resposta = async () => {
             })
         }).catch(error => console.log(error.message))
 
-        
